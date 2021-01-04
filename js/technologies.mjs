@@ -283,4 +283,34 @@ export var technologies = [
             }
         ]
     },
+    {
+        name:"Git",
+        logo:"github.svg",
+        known:true,
+        url:"",
+        proyectos:[
+            {
+            }
+        ]
+    },
+    {
+        name:"Vuetify",
+        logo:"vuetifyjs.svg",
+        known:true,
+        url:"",
+        proyectos:[
+            {
+            }
+        ]
+    },
+    {
+        name:"Bootstrap",
+        logo:"bootstrap.svg",
+        known:true,
+        url:"",
+        proyectos:[
+            {
+            }
+        ]
+    },
 ];
