@@ -20,6 +20,29 @@
   <link href="lib/ionicons/css/ionicons.min.css" rel="stylesheet">
   <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
   <link href="lib/lightbox/css/lightbox.min.css" rel="stylesheet">
+  <link href="lib/ballooncss/balloon.css" rel="stylesheet">
+
+<style>
+  .img-logos {
+    padding-top: 5px;
+    height: 70px;
+  }
+  .img-logos img {
+    width: 25px;
+    margin-left: 7px;
+    margin-right: 7px;
+    margin-top: 2px;
+  }
+  .img-logos img:hover {
+    transform: unset;
+  }
+
+  /*
+  .static-work-box {
+    height: 350px;
+  }
+  */
+</style>
 
   <!-- Main Stylesheet File -->
   <link href="css/style-darkaubergine.css" rel="stylesheet">
@@ -351,7 +374,7 @@
       <div class="row">
         <div class="col-sm-12">
           <div class="title-box text-center">
-            <h3 class="title-a">
+            <h3 class="title-a" aria-label="tech.name" data-balloon-pos="up" >
               Portfolio
             </h3>
             <p class="subtitle-a">
@@ -362,10 +385,13 @@
         </div>
       </div>
       <div class="row">
-        <div class="col-md-4  col-xl-3">
+        
+        <!--div class="col-md-4  col-xl-3">
           <div class="work-box">
             <div class="work-img">
-              <img src="img/work-1.jpg" alt="" class="img-fluid">
+              <a href="img/work-6.jpg" data-lightbox="gallery-mf">
+                <img src="img/work-1.jpg" alt="" class="img-fluid">
+              </a>
             </div>
             <div class="work-content">
               <div class="row">
@@ -383,7 +409,41 @@
               </div>
             </div>
           </div>
-        </div>
+        </div-->
+        
+        <template v-for="(project, index) in projects"  >
+          <div class="col-md-6 col-lg-4 " v-if="project.show" :key="index" >
+            <div class="work-box">
+              <div class="work-img">
+                <a href="img/work-6.jpg" data-lightbox="gallery-mf">
+                  <img src="img/work-1.jpg" alt="" class="img-fluid">
+                </a>
+              </div>
+              <div class="work-content">
+                <div class="row">
+                  <div class="col-xs-9 col-md-10">
+                    <h2 class="w-title">{{  project.name }}</h2>
+                    <div class="w-more">
+                      <span class="w-ctegory">{{ project.short_description }}</span> / <span class="w-date">{{ project.date }}</span>
+                    </div>
+                  </div>
+                  <div class="col-xs-3 col-md-2">
+                    <div class="w-like" style="cursor: pointer" data-toggle="modal" data-target="#modalDetails" @click="loadProjectModalData(index)" >
+                      <span class="ion-ios-plus-outline"></span>
+                    </div>
+                  </div>
+                  <div class="col-12">
+                    <div class="row img-logos">
+                      <div v-for="(tech, index) in project.technologies" :key="index" class="" :aria-label="tech.name" data-balloon-pos="up" >
+                        <img  :src="tech.logo" alt="" class="img-fluid" >
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </template>
         
       </div>
     </div>
@@ -393,14 +453,28 @@
       <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">title</h5>
+            <h5 class="modal-title" id="exampleModalLabel">{{ project.name }}</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
           <div class="modal-body">
             <div class="container-fluid">
+              <div class="row">
+                <div class="col-12">
+                  <p>
+                    {{ project.full_description }}
+                  </p>
+                </div>
 
+                <div class="col-12">
+                  <div class="row img-logos">
+                    <div v-for="(tech, index) in project.technologies" :key="index" class="" :aria-label="tech.name" data-balloon-pos="up" >
+                      <img  :src="tech.logo" alt="" class="img-fluid" >
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
           <div class="modal-footer">
