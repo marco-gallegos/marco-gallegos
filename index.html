@@ -392,15 +392,25 @@
             <h3 class="title-a" aria-label="tech.name" data-balloon-pos="up" >
               Portfolio
             </h3>
-            <p class="subtitle-a">
-              Here you can find some projects
-            </p>
-            <p class="subtitle-a">
-              Filter By Technology
-              <select name="" id="">
-                <option value="null">WIP</option>
-              </select>
-            </p>
+            <div class="row py-2">
+              <p class="subtitle-a col-12">
+                Here you can find some projects
+              </p>
+              <p class="subtitle-a col-sm-12">
+                Filter By Technology
+              </p>
+              <div class="col-sm-12">
+                <div class="row d-flex justify-content-center">
+                  <div class="col-md-4">
+                    <select class="form-control" id="" v-model="filter_tech" v-on:change="filter_projects" >
+                      <option value="null">Todas</option>
+                      <option :key="index_sel" v-for="(tech,index_sel) in technologies" :value="tech.name">{{ tech.name }}</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+
+            </div>
             <div class="line-mf"></div>
           </div>
         </div>
@@ -826,7 +836,7 @@
   <script src="lib/counterup/jquery.waypoints.min.js"></script>
   <script src="lib/counterup/jquery.counterup.js"></script>
   <script src="lib/owlcarousel/owl.carousel.min.js"></script>
-  <script src="lib/lightbox/js/lightbox.min.js"></script>
+  <script src="lib/lightbox/js/lightbox.js"></script>
   <script src="lib/typed/typed.min.js"></script>
   <script src="lib/vuejs/vue.dev.js"></script>
 

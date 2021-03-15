@@ -2,9 +2,9 @@
 var projects = new Vue({
     el:"#work",
     mounted(){
-        console.log("mounted")
+        //console.log("mounted")
         this.reloadTechs();
-        console.log("end mounted")
+        //console.log("end mounted")
     },
     data:{
         loading:{
@@ -22,7 +22,9 @@ var projects = new Vue({
         all_projects:[
 
         ],
-        project:{}
+        project:{},
+
+        filter_tech:null
     },
     methods:{
         shiftLoading(key){
@@ -88,5 +90,30 @@ var projects = new Vue({
             });
             vm.all_projects = new_projects;
         },
+
+        filter_projects(){
+            var vm = this;
+            vm.shiftLoading('projects');
+
+            if (vm.filter_tech == "null"){
+                vm.projects = vm.all_projects;
+            }else{
+                var new_projects = this.all_projects.filter(project => {
+                    var has_tech = false;
+                    project.technologies.forEach(tech => {
+                        if (tech.name == vm.filter_tech){
+                            has_tech = true;
+                            return true;
+                        }
+                    });
+                    if (has_tech){
+                        return project;
+                    }
+                });
+                vm.projects = new_projects
+            }
+
+            vm.shiftLoading('projects');
+        }
     }
 })
