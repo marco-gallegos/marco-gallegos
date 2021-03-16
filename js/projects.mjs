@@ -143,4 +143,27 @@ export var projects = [
         notes:"",
         show:true,
     },
+    {
+        name:"Timezone Bot",
+        folder:"timezone_bot",
+        date:"2019/01/01",
+        short_description:"A USD dollar to Mexican peso value scrapper",
+        description: "A USD dollar to Mexican peso value scrapper using webscrapping in the website",
+        full_description: "This project uses python to make scrapping from a webpage ( https://www.eldolar.info/es-MX/mexico/dia/hoy ) that contains all the main mexican banks dollar value and store the selected value in the configured database, this project is currently working a tc provider into a ERP software on Grupo Ascencio, this project is growing up to use a api and a app",
+        url: "",
+        cover: "cover.png",
+        repos: [
+            "https://github.com/marco-gallegos/tipocambio",
+        ],
+        private:true,
+        technologies:[
+            "Python",
+            "Docker",
+            "ReactNative",
+            "Sqlite",
+            "Mysql",
+        ],
+        notes:"this project lives in a client server",
+        show:true,
+    },
 ]

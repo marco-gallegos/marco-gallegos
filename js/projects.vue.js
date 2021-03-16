@@ -1,10 +1,9 @@
+Vue.component('v-select', VueSelect.VueSelect);
 
 var projects = new Vue({
     el:"#work",
     mounted(){
-        //console.log("mounted")
         this.reloadTechs();
-        //console.log("end mounted")
     },
     data:{
         loading:{
@@ -24,7 +23,9 @@ var projects = new Vue({
         ],
         project:{},
 
-        filter_tech:null
+        filter_tech:{
+            name:"Todas"
+        }
     },
     methods:{
         shiftLoading(key){
@@ -95,13 +96,13 @@ var projects = new Vue({
             var vm = this;
             vm.shiftLoading('projects');
 
-            if (vm.filter_tech == "null"){
+            if (vm.filter_tech.name == "Todas"){
                 vm.projects = vm.all_projects;
             }else{
                 var new_projects = this.all_projects.filter(project => {
                     var has_tech = false;
                     project.technologies.forEach(tech => {
-                        if (tech.name == vm.filter_tech){
+                        if (tech.name == vm.filter_tech.name){
                             has_tech = true;
                             return true;
                         }
@@ -114,6 +115,21 @@ var projects = new Vue({
             }
 
             vm.shiftLoading('projects');
+        },
+
+        resetFilter(){
+            this.filter_tech = {
+                name:"Todas"
+            },
+            this.filter_projects()
+        },
+    },
+    watch: {
+        filter_tech: function(val){
+            if(val==null){
+                this.resetFilter();
+            }
+            this.filter_projects()
         }
     }
 })

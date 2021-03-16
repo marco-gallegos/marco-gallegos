@@ -21,6 +21,7 @@
   <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
   <link href="lib/lightbox/css/lightbox.min.css" rel="stylesheet">
   <link href="lib/ballooncss/balloon.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/vue-select@latest/dist/vue-select.css">
 
 <style>
   .img-logos {
@@ -151,64 +152,120 @@
                       About me
                     </h5>
                   </div>
+                  <h5>Professional</h5>
                   <p class="lead">
-                    Web Developer with experience on Full Stack Development, Automate proccesess and enchance software using the newest practices estrategies and technologies is my passion, proud geek and addicted to learn.
+                    Developer with experience on Web Full Stack Development and Artificial intelligence, automate proccesess and enchance software 
+                    using the newest practices, estrategies and technologies is my passion, proud geek and addicted to learn.
+                  </p>
+                  <h5>Personal</h5>
+                  <p class="lead">
+                    Hi, my name is marco and my hobbies are watch series, play videogames, fix things, the urban cycling, the BMX, visit magic towns and the software development,
+                    i enjoy to visit a good restaurant specially spanish food and seafood, my favorite drink is the red wine and the coffe.
+                    
+                  </p>
                   </p>
                 </div>
               </div>
               <div class="col-md-6">
                 <div class="skill-mf pt-4 pt-md-0">
                   <!-- TODO: tab for frameworks -->
-                  <p class="title-s">Languages</p>
-                  <span>Python</span> <span class="pull-right">95%</span>
-                  <div class="progress">
-                    <div class="progress-bar" role="progressbar" style="width: 95%;" aria-valuenow="95" aria-valuemin="0"
-                      aria-valuemax="100"></div>
-                  </div>
-                  <span>HTML</span> <span class="pull-right">85%</span>
-                  <div class="progress">
-                    <div class="progress-bar" role="progressbar" style="width: 85%;" aria-valuenow="85" aria-valuemin="0"
-                      aria-valuemax="100"></div>
-                  </div>
-                  <span>CSS</span> <span class="pull-right">75%</span>
-                  <div class="progress">
-                    <div class="progress-bar" role="progressbar" style="width: 75%" aria-valuenow="75" aria-valuemin="0"
-                      aria-valuemax="100"></div>
-                  </div>
-                  <span>PHP</span> <span class="pull-right">85%</span>
-                  <div class="progress">
-                    <div class="progress-bar" role="progressbar" style="width: 85%" aria-valuenow="85" aria-valuemin="0"
-                      aria-valuemax="100"></div>
-                  </div>
-                  <span>JAVASCRIPT</span> <span class="pull-right">70%</span>
-                  <div class="progress">
-                    <div class="progress-bar" role="progressbar" style="width: 70%" aria-valuenow="70" aria-valuemin="0"
-                      aria-valuemax="100"></div>
-                  </div>
-                  <span>GoLang</span> <span class="pull-right">50%</span>
-                  <div class="progress">
-                    <div class="progress-bar" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0"
-                      aria-valuemax="100"></div>
-                  </div>
-                  <span>SQL</span> <span class="pull-right">90%</span>
-                  <div class="progress">
-                    <div class="progress-bar" role="progressbar" style="width: 90%" aria-valuenow="90" aria-valuemin="0"
-                      aria-valuemax="100"></div>
-                  </div>
-                  <span>Dart</span> <span class="pull-right">40%</span>
-                  <div class="progress">
-                    <div class="progress-bar" role="progressbar" style="width: 40%" aria-valuenow="40" aria-valuemin="0"
-                      aria-valuemax="100"></div>
-                  </div>
-                  <span>Java</span> <span class="pull-right">55%</span>
-                  <div class="progress">
-                    <div class="progress-bar" role="progressbar" style="width: 55%" aria-valuenow="55" aria-valuemin="0"
-                      aria-valuemax="100"></div>
-                  </div>
-                  <span>BASH</span> <span class="pull-right">75%</span>
-                  <div class="progress">
-                    <div class="progress-bar" role="progressbar" style="width: 75%" aria-valuenow="75" aria-valuemin="0"
-                      aria-valuemax="100"></div>
+
+                  <nav>
+                    <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                      <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">
+                        Languages
+                      </a>
+                      <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">
+                        Tech & I
+                      </a>
+                      <!--a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">
+                        Contact
+                      </a-->
+                    </div>
+                  </nav>
+                  <div class="tab-content" id="nav-tabContent">
+                    <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+                      <span>Python</span> <span class="pull-right">95%</span>
+                      <div class="progress">
+                        <div class="progress-bar" role="progressbar" style="width: 95%;" aria-valuenow="95" aria-valuemin="0"
+                          aria-valuemax="100"></div>
+                      </div>
+                      <span>HTML</span> <span class="pull-right">85%</span>
+                      <div class="progress">
+                        <div class="progress-bar" role="progressbar" style="width: 85%;" aria-valuenow="85" aria-valuemin="0"
+                          aria-valuemax="100"></div>
+                      </div>
+                      <span>CSS</span> <span class="pull-right">75%</span>
+                      <div class="progress">
+                        <div class="progress-bar" role="progressbar" style="width: 75%" aria-valuenow="75" aria-valuemin="0"
+                          aria-valuemax="100"></div>
+                      </div>
+                      <span>PHP</span> <span class="pull-right">85%</span>
+                      <div class="progress">
+                        <div class="progress-bar" role="progressbar" style="width: 85%" aria-valuenow="85" aria-valuemin="0"
+                          aria-valuemax="100"></div>
+                      </div>
+                      <span>JAVASCRIPT</span> <span class="pull-right">70%</span>
+                      <div class="progress">
+                        <div class="progress-bar" role="progressbar" style="width: 70%" aria-valuenow="70" aria-valuemin="0"
+                          aria-valuemax="100"></div>
+                      </div>
+                      <span>GoLang</span> <span class="pull-right">60%</span>
+                      <div class="progress">
+                        <div class="progress-bar" role="progressbar" style="width: 60%" aria-valuenow="60" aria-valuemin="0"
+                          aria-valuemax="100"></div>
+                      </div>
+                      <span>SQL</span> <span class="pull-right">90%</span>
+                      <div class="progress">
+                        <div class="progress-bar" role="progressbar" style="width: 90%" aria-valuenow="90" aria-valuemin="0"
+                          aria-valuemax="100"></div>
+                      </div>
+                      <span>Dart</span> <span class="pull-right">55%</span>
+                      <div class="progress">
+                        <div class="progress-bar" role="progressbar" style="width: 55%" aria-valuenow="55" aria-valuemin="0"
+                          aria-valuemax="100"></div>
+                      </div>
+                      <span>Java</span> <span class="pull-right">55%</span>
+                      <div class="progress">
+                        <div class="progress-bar" role="progressbar" style="width: 55%" aria-valuenow="55" aria-valuemin="0"
+                          aria-valuemax="100"></div>
+                      </div>
+                      <span>BASH</span> <span class="pull-right">80%</span>
+                      <div class="progress">
+                        <div class="progress-bar" role="progressbar" style="width: 80%" aria-valuenow="80" aria-valuemin="0"
+                          aria-valuemax="100"></div>
+                      </div>
+                      <span>C#</span> <span class="pull-right">70%</span>
+                      <div class="progress">
+                        <div class="progress-bar" role="progressbar" style="width: 70%" aria-valuenow="70" aria-valuemin="0"
+                          aria-valuemax="100"></div>
+                      </div>
+                    </div>
+
+                    
+                    <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+                      <div class="row">
+                        <div class="col-12 py-2">
+                          <p class="lead">
+                            Every technology i learn has apurpose and a history.
+                          </p>
+                          <p class="lead" >
+                            Select a technology and watch my cool history with it :D
+                          </p>
+                        </div>
+                        <div class="col-12">
+                          <v-select label="name" :options="[{name:'WIP'}]" ></v-select>
+                          <select name="" class="form-control">
+                            <option value="">WIP</option>
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+
+
+                    <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
+                      coekocfekldfjl @@
+                    </div>
                   </div>
                 </div>
               </div>
@@ -402,10 +459,13 @@
               <div class="col-sm-12">
                 <div class="row d-flex justify-content-center">
                   <div class="col-md-4">
-                    <select class="form-control" id="" v-model="filter_tech" v-on:change="filter_projects" >
-                      <option value="null">Todas</option>
-                      <option :key="index_sel" v-for="(tech,index_sel) in technologies" :value="tech.name">{{ tech.name }}</option>
-                    </select>
+                    <v-select label="name" :options="[{name:'Todas'}, ...technologies]" v-model='filter_tech'>
+                    </v-select>
+                  </div>
+                  <div class="col-2" v-if="filter_tech.name!='Todas'" >
+                    <button type="button" class="btn btn-outline-warning" @click="resetFilter" >
+                      Reset
+                    </button>
                   </div>
                 </div>
               </div>
@@ -839,6 +899,7 @@
   <script src="lib/lightbox/js/lightbox.js"></script>
   <script src="lib/typed/typed.min.js"></script>
   <script src="lib/vuejs/vue.dev.js"></script>
+  <script src="https://unpkg.com/vue-select@latest"></script>
 
   <!-- Template Main Javascript File -->
   <script src="js/main.js"></script>

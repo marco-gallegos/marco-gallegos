@@ -187,6 +187,17 @@ export var technologies = [
         ]
     },
     {
+        name:"C#",
+        logo:"csharp.svg",
+        url:"",
+        known:true,
+        proyectos:[
+            {
+                
+            }
+        ]
+    },
+    {
         name:"Redis",
         logo:"redis.svg",
         url:"",
