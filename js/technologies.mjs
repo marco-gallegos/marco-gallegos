@@ -8,7 +8,9 @@ export var technologies = [
             {
                 
             }
-        ]
+        ],
+        language:true,
+        skilllevel:98,
     },
     {
         name:"Laravel",
@@ -19,7 +21,9 @@ export var technologies = [
             {
                 
             }
-        ]
+        ],
+        language:false,
+        skilllevel:88,
     },
     {
         name:"Vue",
@@ -30,7 +34,9 @@ export var technologies = [
             {
                 
             }
-        ]
+        ],
+        language:false,
+        skilllevel:90,
     },
     {
         name:"React",
@@ -41,7 +47,9 @@ export var technologies = [
             {
                 
             }
-        ]
+        ],
+        language:false,
+        skilllevel:90,
     },
     {
         name:"Golang",
@@ -52,7 +60,9 @@ export var technologies = [
             {
                 
             }
-        ]
+        ],
+        language:true,
+        skilllevel:60,
     },
     {
         name:"Javascript",
@@ -63,7 +73,9 @@ export var technologies = [
             {
                 
             }
-        ]
+        ],
+        language:true,
+        skilllevel:90,
     },
     {
         name:"C++",
@@ -74,7 +86,9 @@ export var technologies = [
             {
                 
             }
-        ]
+        ],
+        language:true,
+        skilllevel:80,
     },
     {
         name:"MongoDB",
@@ -86,6 +100,8 @@ export var technologies = [
                 
             }
         ],
+        language:false,
+        skilllevel:85,
     },
     {
         name:"Mysql",
@@ -97,6 +113,8 @@ export var technologies = [
                 
             }
         ],
+        language:false,
+        skilllevel:98,
     },
     {
         name:"SQLServer",
@@ -107,7 +125,9 @@ export var technologies = [
             {
                 
             }
-        ]
+        ],
+        language:false,
+        skilllevel:88,
     },
     {
         name:"Postgres",
@@ -119,17 +139,21 @@ export var technologies = [
                 
             }
         ],
+        language:false,
+        skilllevel:88,
     },
     {
         name:"Sqlite",
         logo:"sqlite.svg",
         url:"",
-        known:false,
+        known:true,
         proyectos:[
             {
                 
             }
         ],
+        language:false,
+        skilllevel:88,
     },
     {
         name:"ReactNative",
@@ -140,7 +164,9 @@ export var technologies = [
             {
                 
             }
-        ]
+        ],
+        language:false,
+        skilllevel:80,
     },
     {
         name:"Flutter",
@@ -151,7 +177,9 @@ export var technologies = [
             {
                 
             }
-        ]
+        ],
+        language:false,
+        skilllevel:80,
     },
     {
         name:"Java",
@@ -162,7 +190,9 @@ export var technologies = [
             {
                 
             }
-        ]
+        ],
+        language:true,
+        skilllevel:60,
     },
     {
         name:"Docker",
@@ -173,7 +203,9 @@ export var technologies = [
             {
                 
             }
-        ]
+        ],
+        language:false,
+        skilllevel:90,
     },
     {
         name:"Php",
@@ -184,7 +216,9 @@ export var technologies = [
             {
                 
             }
-        ]
+        ],
+        language:true,
+        skilllevel:85,
     },
     {
         name:"C#",
@@ -195,7 +229,9 @@ export var technologies = [
             {
                 
             }
-        ]
+        ],
+        language:true,
+        skilllevel:75,
     },
     {
         name:"Redis",
@@ -206,7 +242,9 @@ export var technologies = [
             {
                 
             }
-        ]
+        ],
+        language:false,
+        skilllevel:90,
     },
     {
         name:"Hadoop",
@@ -217,7 +255,9 @@ export var technologies = [
             {
                 
             }
-        ]
+        ],
+        language:false,
+        skilllevel:80,
     },
     {
         name:"Raspberry",
@@ -228,7 +268,9 @@ export var technologies = [
             {
                 
             }
-        ]
+        ],
+        language:false,
+        skilllevel:88,
     },
     {
         name:"Arduino",
@@ -239,7 +281,9 @@ export var technologies = [
             {
                 
             }
-        ]
+        ],
+        language:false,
+        skilllevel:80,
     },
     {
         name:"Linux",
@@ -250,7 +294,9 @@ export var technologies = [
             {
                 
             }
-        ]
+        ],
+        language:false,
+        skilllevel:98,
     },
     {
         name:"NodeJS",
@@ -260,7 +306,9 @@ export var technologies = [
         proyectos:[
             {
             }
-        ]
+        ],
+        language:false,
+        skilllevel:90,
     },
     
     
@@ -272,7 +320,9 @@ export var technologies = [
         proyectos:[
             {
             }
-        ]
+        ],
+        language:false,
+        skilllevel:0,
     },
     {
         name:"Angular",
@@ -282,17 +332,21 @@ export var technologies = [
         proyectos:[
             {
             }
-        ]
+        ],
+        language:false,
+        skilllevel:0,
     },
     {
         name:"AWSS3",
         logo:"awss3.svg",
-        known:false,
+        known:true,
         url:"",
         proyectos:[
             {
             }
-        ]
+        ],
+        language:false,
+        skilllevel:80,
     },
     {
         name:"Git",
@@ -302,7 +356,9 @@ export var technologies = [
         proyectos:[
             {
             }
-        ]
+        ],
+        language:false,
+        skilllevel:92,
     },
     {
         name:"Vuetify",
@@ -312,7 +368,9 @@ export var technologies = [
         proyectos:[
             {
             }
-        ]
+        ],
+        language:false,
+        skilllevel:80,
     },
     {
         name:"Bootstrap",
@@ -322,6 +380,8 @@ export var technologies = [
         proyectos:[
             {
             }
-        ]
+        ],
+        language:false,
+        skilllevel:98,
     },
 ];
