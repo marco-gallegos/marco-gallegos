@@ -1,6 +1,6 @@
 # AGENTS.md
 
-Static single-page portfolio: one `index.html` with Vue 2 (global build), jQuery, and Bootstrap, all assets committed. `README.md` is the GitHub profile README, not project documentation.
+Static multi-page portfolio: `index.html` plus `certifications.html`, built with Vue 2 (global build), jQuery, and Bootstrap, all assets committed. `README.md` is the GitHub profile README, not project documentation.
 
 ## Branches and deployment (read first)
 
@@ -32,5 +32,7 @@ Static single-page portfolio: one `index.html` with Vue 2 (global build), jQuery
 - `js/projects.mjs`: one object per project card. `folder` + `cover` resolve to `img/<folder>/<cover>` (falls back to `img/work-1.jpg` when `cover` is empty). `technologies` entries must exactly match `name`s in `js/technologies.mjs`, or the logo silently disappears. `show:false` hides a project; `url:null`/`""` renders the offline state; `repos` is a list of URL strings.
 - `js/technologies.mjs`: `logo` is just a filename under `img/techs/` (path prefix is added at runtime); add the SVG there for a new tech. The gh-pages-only `language`/`skilllevel` fields are not rendered anywhere; the skill bars in `index.html` are hand-written.
 - `index.html` contains the Vue template for `#work` (`{{ }}` bindings) plus large commented-out template blocks — don't "clean up" those.
+- `certifications.html` renders `js/certifications.mjs` through `js/certifications.vue.js`. Add one object per credential (newest first); `pdf` is a bare filename under `certifications/`, and `url` is the verification link. `show:false` hides an entry. Drop the PDFs in `certifications/` and keep `certifications/README.md` accurate.
+- When adding a page, copy the `index.html` head/nav/footer scaffolding and add the nav link to **both** pages; there is no shared layout or templating.
 - `css/style-darkaubergine.css` is the active theme; `css/style-*.css` are alternate palettes. SCSS sources are not in the repo (see `css/scss-files.txt`).
 - `lib/` is vendored third-party code (Vue 2, jQuery, Bootstrap 4, lightbox, etc.) — make changes in `js/`/`css/`, not `lib/`. Note that the unminified `vue.dev.js` is loaded in production.
