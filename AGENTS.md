@@ -6,18 +6,19 @@ Static single-page portfolio: one `index.html` with Vue 2 (global build), jQuery
 
 - **`main` is the source of truth; `gh-pages` is the published mirror.** Both hold the whole site at the repo root (no build output). Don't develop on `gh-pages`.
 - Live site: https://marco-gallegos.github.io/marco-gallegos/ — served from the repo subpath, so keep every asset/link path relative (no leading `/`).
-- GitHub Pages is configured as **Deploy from a branch → `gh-pages` / (root)** with the legacy build. There is no CI and no build step: whatever lands on `gh-pages` goes live, and the whole repo root is public (do not commit secrets).
-- Deploy after merging your work into `main`:
+- GitHub Pages is configured as **Deploy from a branch → `gh-pages` / (root)** with the legacy build. `.github/workflows/deploy-pages.yml` runs on every push to `main` and fast-forwards `gh-pages` to that commit. There is no build or test step: whatever lands on `gh-pages` goes live, and the whole repo root is public (do not commit secrets).
+- Deploy: push to `main`, then watch the workflow:
 
   ```bash
   git switch main
   git pull --ff-only
   git push origin main
-  git push origin main:gh-pages
+  gh run list --workflow=deploy-pages.yml --limit 1
   ```
 
-  The second push is a fast-forward because `main` contains `gh-pages` history. If it is rejected, someone committed to `gh-pages` directly: run `git merge origin/gh-pages` into `main`, resolve, and push again (never force-push).
-- Verify: `gh api repos/marco-gallegos/marco-gallegos/pages --jq '.status'` returns `built`, and the live URL shows the change (Pages takes about a minute).
+  Re-run a failed deploy without a new commit: `gh workflow run deploy-pages.yml --ref main`. Manual fallback: `git push origin main:gh-pages` (same fast-forward).
+- If the workflow cannot fast-forward, someone committed to `gh-pages` directly: run `git merge origin/gh-pages` into `main`, resolve, and push again (never force-push).
+- Verify: the run succeeds, `gh api repos/marco-gallegos/marco-gallegos/pages --jq '.status'` returns `built`, and the live URL shows the change (Pages takes about a minute).
 - `js/about.vue.js` is not referenced by `index.html`; editing it has no effect.
 
 ## Local preview
