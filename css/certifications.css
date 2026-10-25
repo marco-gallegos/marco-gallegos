@@ -10,10 +10,6 @@
   padding: 9rem 0 5rem;
 }
 
-.cert-hero .overlay-mf {
-  opacity: .82;
-}
-
 .cert-hero-content {
   position: relative;
   z-index: 1;

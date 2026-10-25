@@ -299,6 +299,19 @@ export var technologies = [
         skilllevel:98,
     },
     {
+        name:"Ubuntu",
+        logo:"ubuntu.svg",
+        url:"https://ubuntu.com/",
+        known:true,
+        proyectos:[
+            {
+
+            }
+        ],
+        language:false,
+        skilllevel:90,
+    },
+    {
         name:"NodeJS",
         logo:"nodejs.svg",
         known:true,
