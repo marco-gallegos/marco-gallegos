@@ -1,0 +1,35 @@
+# AGENTS.md
+
+Static single-page portfolio: one `index.html` with Vue 2 (global build), jQuery, and Bootstrap, all assets committed. `README.md` is the GitHub profile README, not project documentation.
+
+## Branches and deployment (read first)
+
+- **`main` is the source of truth; `gh-pages` is the published mirror.** Both hold the whole site at the repo root (no build output). Don't develop on `gh-pages`.
+- Live site: https://marco-gallegos.github.io/marco-gallegos/ — served from the repo subpath, so keep every asset/link path relative (no leading `/`).
+- GitHub Pages is configured as **Deploy from a branch → `gh-pages` / (root)** with the legacy build. There is no CI and no build step: whatever lands on `gh-pages` goes live, and the whole repo root is public (do not commit secrets).
+- Deploy after merging your work into `main`:
+
+  ```bash
+  git switch main
+  git pull --ff-only
+  git push origin main
+  git push origin main:gh-pages
+  ```
+
+  The second push is a fast-forward because `main` contains `gh-pages` history. If it is rejected, someone committed to `gh-pages` directly: run `git merge origin/gh-pages` into `main`, resolve, and push again (never force-push).
+- Verify: `gh api repos/marco-gallegos/marco-gallegos/pages --jq '.status'` returns `built`, and the live URL shows the change (Pages takes about a minute).
+- `js/about.vue.js` is not referenced by `index.html`; editing it has no effect.
+
+## Local preview
+
+- Serve over HTTP: `python3 -m http.server 8000` → http://localhost:8000/.
+- `file://` will not work: `js/projects.vue.js` dynamically imports the `.mjs` data modules, which browsers block from `file://`.
+- No build step, package manager, bundler, tests, or linter. Verify by loading the page and watching the browser console.
+
+## Content model
+
+- `js/projects.mjs`: one object per project card. `folder` + `cover` resolve to `img/<folder>/<cover>` (falls back to `img/work-1.jpg` when `cover` is empty). `technologies` entries must exactly match `name`s in `js/technologies.mjs`, or the logo silently disappears. `show:false` hides a project; `url:null`/`""` renders the offline state; `repos` is a list of URL strings.
+- `js/technologies.mjs`: `logo` is just a filename under `img/techs/` (path prefix is added at runtime); add the SVG there for a new tech. The gh-pages-only `language`/`skilllevel` fields are not rendered anywhere; the skill bars in `index.html` are hand-written.
+- `index.html` contains the Vue template for `#work` (`{{ }}` bindings) plus large commented-out template blocks — don't "clean up" those.
+- `css/style-darkaubergine.css` is the active theme; `css/style-*.css` are alternate palettes. SCSS sources are not in the repo (see `css/scss-files.txt`).
+- `lib/` is vendored third-party code (Vue 2, jQuery, Bootstrap 4, lightbox, etc.) — make changes in `js/`/`css/`, not `lib/`. Note that the unminified `vue.dev.js` is loaded in production.
