@@ -67,6 +67,7 @@
 
   <!-- Main Stylesheet File -->
   <link href="css/style-darkaubergine.css" rel="stylesheet">
+  <link href="css/experience.css" rel="stylesheet">
   <link href="css/tech-particles.css" rel="stylesheet">
 
   <!-- =======================================================
@@ -106,6 +107,9 @@
           </li>
           <li class="nav-item">
             <a class="nav-link js-scroll" href="#about">About</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link js-scroll" href="#experience">Experience</a>
           </li>
           <!--li class="nav-item">
             <a class="nav-link js-scroll" href="#service">Services</a>
@@ -295,6 +299,126 @@
     </div>
   </section>
 
+  <!--/ Section Experience Star /-->
+  <section id="experience" class="experience-mf sect-pt4 route">
+    <div class="container" v-cloak>
+      <div class="title-box text-center">
+        <h3 class="title-a">Experience</h3>
+        <p class="subtitle-a">
+          A timeline of the teams and products I've worked with. Click a role to see the details.
+        </p>
+        <div class="line-mf"></div>
+      </div>
+
+      <div class="experience-state" v-if="loading">
+        <p>Loading experience&hellip;</p>
+      </div>
+
+      <div class="experience-state" v-else-if="experience.length === 0">
+        <i class="ion-ios-briefcase" aria-hidden="true"></i>
+        <h2>Experience timeline coming soon</h2>
+        <p>I'm preparing this section. Check back soon.</p>
+      </div>
+
+      <div class="experience-timeline" v-else>
+        <article class="timeline-item"
+          v-for="(item, index) in experience"
+          :key="item.company + item.period"
+          :class="{ 'is-open': isOpen(index), 'is-current': item.current }">
+          <span class="timeline-dot" aria-hidden="true"></span>
+
+          <div class="timeline-card">
+            <button type="button" class="timeline-head"
+              :id="`experience-heading-${index}`"
+              :aria-expanded="isOpen(index) ? 'true' : 'false'"
+              :aria-controls="`experience-detail-${index}`"
+              @click="toggle(index)">
+              <span class="timeline-mark" aria-hidden="true">
+                <img v-if="item.logo" :src="`img/${item.logo}`" alt="">
+                <span v-else>{{ item.initials || initial(item.company) }}</span>
+              </span>
+
+              <span class="timeline-head-main">
+                <span class="timeline-company">{{ item.company }}</span>
+                <span class="timeline-role">{{ item.role }}</span>
+              </span>
+
+              <span class="timeline-meta">
+                <span class="timeline-period">{{ item.period }}</span>
+                <span class="timeline-current" v-if="item.current">Current</span>
+                <span class="timeline-location" v-if="item.location">
+                  <i class="ion-ios-location" aria-hidden="true"></i> {{ item.location }}
+                </span>
+              </span>
+
+              <span class="timeline-chevron" aria-hidden="true">
+                <i class="ion-chevron-down"></i>
+              </span>
+            </button>
+
+            <div class="timeline-detail"
+              :id="`experience-detail-${index}`"
+              role="region"
+              :aria-labelledby="`experience-heading-${index}`"
+              :aria-hidden="isOpen(index) ? 'false' : 'true'"
+              v-show="isOpen(index)">
+              <p class="timeline-summary" v-if="item.summary">{{ item.summary }}</p>
+
+              <div class="timeline-section" v-if="item.highlights && item.highlights.length">
+                <h4 class="timeline-section-title">What I did</h4>
+                <ul class="timeline-list">
+                  <li v-for="(highlight, highlightIndex) in item.highlights" :key="highlightIndex">
+                    {{ highlight }}
+                  </li>
+                </ul>
+              </div>
+
+              <div class="timeline-section" v-if="item.projects && item.projects.length">
+                <h4 class="timeline-section-title">Selected work</h4>
+                <div class="timeline-projects">
+                  <article class="timeline-project" v-for="(project, projectIndex) in item.projects" :key="projectIndex">
+                    <h5>{{ project.name }}</h5>
+                    <p v-if="project.description">{{ project.description }}</p>
+                    <div class="timeline-techs" v-if="project.technologyDetails && project.technologyDetails.length">
+                      <span class="timeline-tech" v-for="(tech, techIndex) in project.technologyDetails" :key="techIndex">
+                        <img v-if="tech.logo" :src="tech.logo" alt="" aria-hidden="true">
+                        {{ tech.name }}
+                      </span>
+                    </div>
+                    <a v-if="project.url" class="timeline-project-link" :href="project.url" target="_blank" rel="noopener noreferrer">
+                      View project <i class="fa fa-external-link" aria-hidden="true"></i>
+                    </a>
+                  </article>
+                </div>
+              </div>
+
+              <div class="timeline-section" v-if="item.technologyDetails && item.technologyDetails.length">
+                <h4 class="timeline-section-title">Stack</h4>
+                <div class="timeline-techs">
+                  <span class="timeline-tech" v-for="(tech, techIndex) in item.technologyDetails" :key="techIndex">
+                    <img v-if="tech.logo" :src="tech.logo" alt="" aria-hidden="true">
+                    {{ tech.name }}
+                  </span>
+                </div>
+              </div>
+
+              <a v-if="item.url" class="timeline-company-link" :href="item.url" target="_blank" rel="noopener noreferrer">
+                Visit {{ item.company }} <i class="fa fa-external-link" aria-hidden="true"></i>
+              </a>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+
+    <noscript>
+      <div class="container experience-state">
+        <p>This timeline needs JavaScript enabled to render the experience details.</p>
+      </div>
+    </noscript>
+  </section>
+  <!--/ Section Experience End /-->
+
   <!--/ Section Services Star /-->
   <!--section id="service" class="services-mf route">
     <div class="container">
@@ -428,7 +552,7 @@
               <span class="ico-circle"><i class="ion-ios-calendar-outline"></i></span>
             </div>
             <div class="counter-num">
-              <p class="counter">4</p>
+              <p class="counter">10</p>
               <span class="counter-text">YEARS OF EXPERIENCE</span>
             </div>
           </div>
@@ -924,6 +1048,7 @@
   <script src="js/tech-particles.js"></script>
   <script src="js/main.js"></script>
   <script src="js/projects.vue.js"></script>
+  <script src="js/experience.vue.js"></script>
 
 </body>
 </html>

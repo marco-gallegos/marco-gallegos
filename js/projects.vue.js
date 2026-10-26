@@ -38,8 +38,9 @@ var projects = new Vue({
                 vm.technologies = module.technologies;
                 let technologies = null;
                 technologies = vm.technologies.map(technologie => {
-                    technologie.logo = `img/techs/${technologie.logo}`;
-                    return technologie;
+                    return Object.assign({}, technologie, {
+                        logo: `img/techs/${technologie.logo}`
+                    });
                 });
                 vm.technologies = technologies;
                 this.shiftLoading('technologies')
