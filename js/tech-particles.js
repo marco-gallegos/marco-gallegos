@@ -2,37 +2,53 @@
   "use strict";
 
   var LOGO_DIR = "img/techs/";
-  var GUARANTEED = ["linux-tux.svg", "ubuntu.svg"];
-  var LOGOS = GUARANTEED.concat([
-    "python.svg",
-    "javascript.svg",
-    "vue.svg",
-    "react.svg",
-    "laravel.svg",
-    "php.svg",
-    "nodejs.svg",
-    "gopher.svg",
-    "java.svg",
-    "csharp.svg",
-    "docker.svg",
-    "mysql.svg",
-    "postgresql.svg",
-    "mongodb.svg",
-    "redis.svg",
-    "hadoop.svg",
-    "awss3.svg",
-    "github.svg",
-    "bootstrap.svg",
-    "flutter.svg",
-    "raspberry.svg",
-    "arduino.svg",
-    "deno.svg",
-    "angular.svg",
-    "ionic.svg",
-    "sqlite.svg",
-    "mssql.svg",
-    "c-plusplus.svg",
-  ]);
+  var LOGOS = [
+    { file: "linux-tux.svg", name: "Linux", url: "https://www.linux.org/" },
+    { file: "ubuntu.svg", name: "Ubuntu", url: "https://ubuntu.com/" },
+    { file: "bohr-atom.svg", name: "Bohr model", url: "https://en.wikipedia.org/wiki/Bohr_model" },
+    { file: "python.svg", name: "Python", url: "https://www.python.org/" },
+    { file: "javascript.svg", name: "JavaScript", url: "https://developer.mozilla.org/en-US/docs/Web/JavaScript" },
+    { file: "vue.svg", name: "Vue", url: "https://vuejs.org/" },
+    { file: "react.svg", name: "React", url: "https://react.dev/" },
+    { file: "laravel.svg", name: "Laravel", url: "https://laravel.com/" },
+    { file: "php.svg", name: "PHP", url: "https://www.php.net/" },
+    { file: "nodejs.svg", name: "Node.js", url: "https://nodejs.org/" },
+    { file: "gopher.svg", name: "Go", url: "https://go.dev/" },
+    { file: "java.svg", name: "Java", url: "https://www.java.com/" },
+    { file: "csharp.svg", name: "C#", url: "https://learn.microsoft.com/en-us/dotnet/csharp/" },
+    { file: "docker.svg", name: "Docker", url: "https://www.docker.com/" },
+    { file: "mysql.svg", name: "MySQL", url: "https://www.mysql.com/" },
+    { file: "postgresql.svg", name: "PostgreSQL", url: "https://www.postgresql.org/" },
+    { file: "mongodb.svg", name: "MongoDB", url: "https://www.mongodb.com/" },
+    { file: "redis.svg", name: "Redis", url: "https://redis.io/" },
+    { file: "hadoop.svg", name: "Hadoop", url: "https://hadoop.apache.org/" },
+    { file: "awss3.svg", name: "AWS S3", url: "https://aws.amazon.com/s3/" },
+    { file: "github.svg", name: "GitHub", url: "https://github.com/" },
+    { file: "bootstrap.svg", name: "Bootstrap", url: "https://getbootstrap.com/" },
+    { file: "flutter.svg", name: "Flutter", url: "https://flutter.dev/" },
+    { file: "raspberry.svg", name: "Raspberry Pi", url: "https://www.raspberrypi.org/" },
+    { file: "arduino.svg", name: "Arduino", url: "https://www.arduino.cc/" },
+    { file: "deno.svg", name: "Deno", url: "https://deno.com/" },
+    { file: "angular.svg", name: "Angular", url: "https://angular.dev/" },
+    { file: "ionic.svg", name: "Ionic", url: "https://ionicframework.com/" },
+    { file: "sqlite.svg", name: "SQLite", url: "https://www.sqlite.org/" },
+    { file: "mssql.svg", name: "SQL Server", url: "https://www.microsoft.com/en-us/sql-server" },
+    { file: "c-plusplus.svg", name: "C++", url: "https://isocpp.org/" },
+  ];
+  var GUARANTEED = ["linux-tux.svg", "ubuntu.svg", "bohr-atom.svg"];
+  var LOGO_BY_FILE = {};
+
+  LOGOS.forEach(function (logo) {
+    LOGO_BY_FILE[logo.file] = logo;
+  });
+
+  var GUARANTEED_LOGOS = GUARANTEED.map(function (filename) {
+    return LOGO_BY_FILE[filename];
+  }).filter(Boolean);
+
+  var RANDOM_LOGOS = LOGOS.filter(function (logo) {
+    return GUARANTEED.indexOf(logo.file) === -1;
+  });
 
   function shuffle(items) {
     for (var i = items.length - 1; i > 0; i--) {
@@ -59,6 +75,12 @@
       return;
     }
 
+    var linkLayer = document.createElement("div");
+    linkLayer.className = "tech-particles-links";
+    linkLayer.setAttribute("role", "group");
+    linkLayer.setAttribute("aria-label", "Technologies");
+    container.insertBefore(linkLayer, canvas.nextSibling);
+
     var images = {};
     var particles = [];
     var width = 0;
@@ -70,20 +92,72 @@
       && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
     function loadImages() {
-      LOGOS.forEach(function (filename) {
+      LOGOS.forEach(function (logo) {
         var image = new Image();
         image.onload = function () {
-          images[filename] = image;
+          images[logo.file] = image;
           if (reduceMotion) {
             drawFrame();
           }
         };
-        image.src = LOGO_DIR + filename;
+        image.src = LOGO_DIR + logo.file;
+      });
+    }
+
+    function positionLink(particle) {
+      if (!particle.link) {
+        return;
+      }
+
+      particle.link.style.transform = "translate3d("
+        + (particle.x - particle.hitSize / 2) + "px,"
+        + (particle.y - particle.hitSize / 2) + "px,0)";
+    }
+
+    function setHovered(particle, hovered) {
+      particle.hovered = hovered;
+      if (reduceMotion) {
+        drawFrame();
+      }
+    }
+
+    function createLinks() {
+      linkLayer.innerHTML = "";
+
+      particles.forEach(function (particle) {
+        var link = document.createElement("a");
+        link.className = "tech-particle-link";
+        link.href = particle.logo.url;
+        link.target = "_blank";
+        link.rel = "noopener noreferrer";
+        link.title = particle.logo.name;
+        link.setAttribute("aria-label", particle.logo.name + " (opens in a new tab)");
+
+        particle.hitSize = Math.max(particle.radius * 2, 40);
+        particle.link = link;
+        link.style.width = particle.hitSize + "px";
+        link.style.height = particle.hitSize + "px";
+
+        link.addEventListener("mouseenter", function () {
+          setHovered(particle, true);
+        });
+        link.addEventListener("mouseleave", function () {
+          setHovered(particle, false);
+        });
+        link.addEventListener("focus", function () {
+          setHovered(particle, true);
+        });
+        link.addEventListener("blur", function () {
+          setHovered(particle, false);
+        });
+
+        positionLink(particle);
+        linkLayer.appendChild(link);
       });
     }
 
     function buildParticles() {
-      var shuffled = shuffle(LOGOS.slice());
+      var shuffled = shuffle(RANDOM_LOGOS.slice());
       var count = Math.max(6, Math.min(22, Math.round(width * height / 38000)));
       if (width < 576) {
         count = Math.min(count, 9);
@@ -140,11 +214,14 @@
           rotation: randomBetween(0, Math.PI * 2),
           spin: randomBetween(-0.0015, 0.0015),
           alpha: isMobile ? randomBetween(0.55, 0.8) : randomBetween(0.8, 1),
-          logo: i < GUARANTEED.length
-            ? GUARANTEED[i]
-            : shuffled[(i - GUARANTEED.length) % shuffled.length],
+          hovered: false,
+          logo: i < GUARANTEED_LOGOS.length
+            ? GUARANTEED_LOGOS[i]
+            : shuffled[(i - GUARANTEED_LOGOS.length) % shuffled.length],
         });
       }
+
+      createLinks();
     }
 
     function update() {
@@ -168,6 +245,8 @@
           particle.y = particle.maxY;
           particle.vy = -Math.abs(particle.vy);
         }
+
+        positionLink(particle);
       });
     }
 
@@ -195,7 +274,7 @@
     }
 
     function drawParticle(particle) {
-      var image = images[particle.logo];
+      var image = images[particle.logo.file];
       var radius = particle.radius;
 
       ctx.save();
@@ -234,6 +313,16 @@
         ctx.shadowBlur = 8;
         ctx.shadowOffsetY = 0;
         ctx.drawImage(image, -logoWidth / 2, -logoHeight / 2, logoWidth, logoHeight);
+      }
+
+      if (particle.hovered) {
+        ctx.shadowColor = "transparent";
+        ctx.shadowBlur = 0;
+        ctx.beginPath();
+        ctx.arc(0, 0, radius + 5, 0, Math.PI * 2);
+        ctx.strokeStyle = "rgba(255, 255, 255, 0.95)";
+        ctx.lineWidth = 2;
+        ctx.stroke();
       }
 
       ctx.restore();

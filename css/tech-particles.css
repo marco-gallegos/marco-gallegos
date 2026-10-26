@@ -22,11 +22,46 @@
   z-index: 1;
   background: linear-gradient(180deg, rgba(44, 0, 30, .12) 0%, rgba(22, 0, 15, .52) 100%);
   opacity: 1;
+  pointer-events: none;
+}
+
+.tech-particles-links {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.tech-particle-link {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+  border-radius: 50%;
+  pointer-events: auto;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.tech-particle-link:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 3px;
 }
 
 .has-particles .intro-content,
 .has-particles .cert-hero-content {
-  z-index: 2;
+  z-index: 3;
+  pointer-events: none;
+}
+
+.has-particles .intro-content a,
+.has-particles .intro-content button,
+.has-particles .cert-hero-content a,
+.has-particles .cert-hero-content button {
+  pointer-events: auto;
 }
 
 .has-particles .intro-title,
